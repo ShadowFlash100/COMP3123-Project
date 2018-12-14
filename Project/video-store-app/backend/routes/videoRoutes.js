@@ -1,90 +1,69 @@
-var express = require('express');
-var videoRoutes = express.Router();
-var Video = require('../models/video');
+const express = require('express'),
+    videoRouter = express.Router(),
+    Video = require('../models/video')
+    app = express()
 
-videoRoutes.route('/add').post(function (req, res) {
-    var video = new Video(req.body);
-    video.save()
-      .then(item => {
-      res.status(200).json({'Video': 'Video added successfully'});
-      })
-      .catch(err => {
-      res.status(400).send("unable to save to database");
-      });
-  });
-  videoRoutes.route('/').get(function (req, res) {
-    Video.find(function (err, videos){
-     if(err){
-       console.log(err);
-     }
-     else {
-       res.json(videos);
-     }
-   });
- });
- videoRoutes.route('/edit/:id').get(function (req, res) {
-    var id = req.params.id;
-    Video.findById(id, function (err, video){
-        res.json(video);
+//app.use('/', videoRouter);
+    
+videoRouter.route('/').get((req, res) => {
+    Video.find((err, videos) => {
+        if (err)
+            console.log(err);
+        else
+            res.json(videos);
     });
-  });
-
-  videoRoutes.route('/update/:id').post(function (req, res) {
-    Video.findById(req.params.id, function(err, video) {
-     if (!video)
-       return next(new Error('Could not load Document'));
-     else {
-        video.title = req.body.title;
-        video.runTime = req.body.runTime;
-        video.genre = req.body.genre;
-        video.rating = req.body.rating;
-        video.director = req.body.director;
-        video.status = req.body.status;
-        video.reserve= req.body.reserve
- 
-        video.save().then(video => {
-           res.json('Update complete');
-       })
-       .catch(err => {
-             res.status(400).send("unable to update the database");
-       });
-     }
-   });
- });
-
- videoRoutes.route('/reserve/:id').get(function (req, res) {
-  var id = req.params.id;
-  Video.findById(id, function (err, video){
-      res.json(video);
-  });
 });
-videoRoutes.route('/reservevideo/:id').post(function (req, res) {
-    Video.findById(req.params.id, function(err, video) {
-   if (!video)
-     return new Error('Could not load Document');
-   else {
-    video.title = req.body.title;
-    video.runTime = req.body.runTime;
-    video.genre = req.body.genre;
-    video.rating = req.body.rating;
-    video.director = req.body.director;
-    video.status = req.body.status;
-    video.reserve= req.body.reserve
 
-    video.save().then(video => {
-         res.json('Update complete');
-     })
-     .catch(err => {
-           res.status(400).send("unable to update the database");
-     });
-   }
- });
+videoRouter.route('/:id').get((req, res) => {
+    Video.findById(req.params.id, (err, video) => {
+        if (err)
+            console.log(err);
+        else
+            res.json(video);
+    });
 });
- videoRoutes.route('/delete/:id').get(function (req, res) {
-    Video.findByIdAndRemove({_id: req.params.id}, function(err, video){
-         if(err) res.json(err);
-         else res.json('Successfully removed');
-     });
- });
+//add video
+videoRouter.route('/add').post((req, res) => {
+    let video = new Video(req.body);
+    video.save()
+        .then(video => {
+            res.status(200).json({'video': 'Added successfully'});
+        })
+        .catch(err => {
+            res.status(400).send('Failed to create new video');
+        });
+});
 
- module.exports = videoRoutes;
+//edit video
+videoRouter.route('/update/:id').post((req, res) => {
+    Video.findById(req.params.id, (err, video) => {
+        if (!video)
+            return next(new Error('Could not load document'));
+        else {
+            video.title = req.body.title;
+            video.runTime = req.body.runTime;
+            video.genre = req.body.genre;
+            video.rating = req.body.rating;
+            video.director = req.body.director;
+            video.status = req.body.status;
+            video.customer = req.body.customer;
+
+            video.save().then(video => {
+                res.json('Update done');
+            }).catch(err => {
+                res.status(400).send('Update failed');
+            });
+        }
+    });
+});
+
+
+videoRouter.route('/delete/:id').get((req, res) => {
+    Video.findByIdAndRemove({_id: req.params.id}, (err, video) => {
+        if (err)
+            res.json(err);
+        else
+            res.json('Remove successfully');
+    })
+})
+module.exports = videoRouter

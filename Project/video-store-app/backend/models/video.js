@@ -8,7 +8,8 @@ let video = new Schema({
     genre: String,
     rating: String,
     director: String,
-    status: String
+    status: String,
+    customer: String
 })
 
 module.exports = mongoose.model('video', video)

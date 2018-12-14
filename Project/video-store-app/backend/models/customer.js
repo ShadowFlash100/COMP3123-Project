@@ -8,7 +8,8 @@ let customer = new Schema({
     address: String,
     city: String,
     phone: String,
-    status: String
+    status: String,
+    video:String
 })
 
 module.exports = mongoose.model('customer', customer)
