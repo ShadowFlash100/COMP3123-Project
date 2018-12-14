@@ -1,0 +1,29 @@
+h1{
+    margin-left: 653px;
+}
+.nav{
+    border:1px solid #ccc;
+    border-width:1px 0;
+    list-style:none;
+    margin:0;
+    padding:0;
+    text-align:center;
+}
+.nav li{
+    display:inline;
+}
+.nav a{
+    display:inline-block;
+    padding:10px;
+    margin-left: 100px;
+    padding: 4px 5px;
+    text-align: center;
+    text-decoration: none;
+}
+
+table, th, td {
+    border: 1px solid black;
+ }
+.containerContent{
+        margin: 15px 270px 0 425px;
+}

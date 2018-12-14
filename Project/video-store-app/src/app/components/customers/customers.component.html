@@ -1,0 +1,39 @@
+<script src="https://cdn.auth0.com/js/auth0/9.5.1/auth0.min.js"></script>
+<div>
+  <div>
+  <div>
+          <ul class="nav">
+            <li>
+              <a routerLink="/admin" routerLinkActive="active" *ngIf="auth.isAuthenticated()"> admin</a>
+              <a routerLink="/videos" routerLinkActive="active">videos</a>
+            </li>
+          </ul>
+      </div>
+      <h3>{{title}}</h3>
+
+      <input [(ngModel)]="searchText" placeholder="search text goes here">
+      <table class="table table-hover">
+          <thead>
+          <tr>
+              <td>First Name</td>
+              <td>Last Name</td>
+              <td>Address</td>
+              <td>City</td>
+              <td>Phone</td>
+              <td>Status</td>
+          </tr>
+          </thead>
+        
+          <tbody>
+              <tr *ngFor="let customer of customers | filter : {firstName: searchText, lastName: searchText, 
+                  address: searchText, city: searchText, phone: searchText, status: searchText}  ">
+                  <td>{{ customer.firstName }}</td>
+                  <td>{{ customer.lastName }}</td>
+                  <td>{{ customer.address }}</td>
+                  <td>{{ customer.city }}</td>
+                  <td>{{ customer.phone }}</td>
+                  <td>{{ customer.status }}</td>
+                  <td *ngIf="auth.isAuthenticated()"><button (click) = "deleteCustomer(customer._id)" class="btn btn-danger"> delete</button></td>
+              </tr>
+          </tbody>
+        </table>
