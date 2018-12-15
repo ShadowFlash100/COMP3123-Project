@@ -1,0 +1,47 @@
+<script src="https://cdn.auth0.com/js/auth0/9.5.1/auth0.min.js"></script>
+<div>
+        <ul class="nav">
+          <li>
+              <a routerLink="/players" routerLinkActive="active">Players</a>
+          </li>
+          <li>
+            <a routerLink="/admin" routerLinkActive="active" *ngIf="auth.isAuthenticated()">Admin</a>
+          </li>
+        </ul>
+    </div>
+    <h3>  
+        Welcome to Video Games+
+    </h3>
+    <p>
+        If you are a player, you may do the following:
+    </p>
+          <ul>
+            <li>
+              View Catalaogue of Players
+            </li>
+            <li>
+              View Player Information
+            </li>
+            <li>
+              Join a Game, if you are the player
+            </li>
+          </ul>
+    <p>
+        If you are an Administrator, you will find the Admin button on the top right 
+        <br>
+        where you may login to do the following:
+    </p>
+    <ul>
+            <li>
+              Create a New Player
+            </li>
+            <li>
+              Edit Exisiting Players
+            </li>
+            <li>
+              Delete a Player Profile
+            </li>
+            <li>
+              View the List of Games Available
+            </li>
+        </ul>

@@ -1,0 +1,6 @@
+Login:
+User: admin@admin.com
+Password: adminADMIN123
+
+
+This has been the most interesting, and most frusterating project.
