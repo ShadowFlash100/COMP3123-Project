@@ -4,38 +4,37 @@
       <div>
         <ul class="nav">
           <li>
-            <a routerLink="/admin" routerLinkActive="active">Home</a>
-            <a routerLink="/index" routerLinkActive="active">Players</a>
-            <a routerLink="/games" routerLinkActive="active">Games</a>
+            <a routerLink="/videos" routerLinkActive="active">videos</a>
+            <a routerLink="/customers" routerLinkActive="active">Customers</a>
           </li>
         </ul>
     </div>
 
 
   <div class="panel-body">
-    <form [formGroup]="angForm" novalidate>
+    <form [formGroup]="editForm" novalidate>
       <div class="form-group">
-        <label class="col-md-4">Player Name</label>
-        <input type="text" class="form-control" formControlName="playerName" #playerName [(ngModel)] = "player.playerName"/>
+        <label class="col-md-4">video</label>
+        <input type="text" class="form-control" formControlName="title" #title [(ngModel)] = "video.title"/>
       </div>
 
       <div class="form-group">
-        <label class="col-md-4">Current Rank:</label>
-        <label type="text" class="form-control" >{{player.rank}}</label>
+        <label class="col-md-4">runTime:</label>
+        <input type="text" class="form-control" formControlName="runTime" #title [(ngModel)] = "video.runTime"/>
       </div>
 
       <div class="form-group">
-        <label class="col-md-4">New Rank</label>
-        <select class="form-control" formControlName="newrank" [(ngModel)]='rank.rank'>
-            <option *ngFor="let r of rank" [ngValue]='r'>
+        <label class="col-md-4"></label>
+        <input type="text" class="form-control" formControlName="genre" #genre [(ngModel)] = "video.genre"/>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">rating</label>
+        <select class="form-control" formControlName="newrating" [(ngModel)]='rating.rating'>
+            <option *ngFor="let r of rating" [ngValue]='r'>
               {{r}}
             </option>
           </select>
-      </div>
-
-      <div class="form-group">
-        <label class="col-md-4">Score</label>
-        <input type="text" class="form-control" formControlName="score" #score [(ngModel)] = "player.score"/>
       </div>
 
       <div class="form-group">
@@ -55,8 +54,8 @@
       <div class="form-group">
         <label class="col-md-4">Status</label>
         <select  formControlName="status" [(ngModel)] = "statuses.status">
-          <option  *ngFor='let stat of statuses' [ngValue]='stat.st' >
-            {{stat.st}}
+          <option  *ngFor='let vid of statuses' [ngValue]='vid.st' >
+            {{vid.st}}
           </option>
         </select>
       </div>

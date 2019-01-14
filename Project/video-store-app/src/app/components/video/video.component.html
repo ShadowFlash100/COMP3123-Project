@@ -36,6 +36,9 @@
                  <td *ngIf="video.status=='Available'">
                         <button><a [routerLink]="['/reserve', video._id]">Reserve</a></button>
                 </td>
+                <td *ngIf="video.status=='Available'">
+                  <button><a [routerLink]="['/edit', video._id]">Edit</a></button>
+                </td>
                 <td *ngIf="auth.isAuthenticated()"><button (click) = "deleteVideo(video._id)" class="btn btn-danger">Delete</button></td>
 
               </tr>

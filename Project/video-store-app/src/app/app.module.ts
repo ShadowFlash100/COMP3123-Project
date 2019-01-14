@@ -14,6 +14,7 @@ import {AdminComponent} from './components/admin/admin.component';
 import { VideoComponent } from './components/video/video.component';
 import { CustomersComponent } from './components/customers/customers.component';
 
+
 //services
 import { CustomerService } from './services/customer.service';
 import { VideoService } from './services/video.service';
@@ -29,8 +30,8 @@ const routes: Routes = [
   {path: 'home', component:HomeComponent},
   {path: 'admin', component: AdminComponent},
   {path: 'customers', component: CustomersComponent},
-  {path:'reserve/:id', component: ReserveComponent}
- 
+  {path:'reserve/:id', component: ReserveComponent},
+
 ]
 
 @NgModule({
@@ -44,7 +45,7 @@ const routes: Routes = [
     AdminComponent,
     VideoComponent,
     CustomersComponent,
-    ReserveComponent
+    ReserveComponent,
   ],
   imports: [
     BrowserModule,
